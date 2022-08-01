@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NetlogixOrderApi.DTO;
+using NetlogixOrderApi.Models;
 
-namespace NetlogixOrderApi.Controllers
+    namespace NetlogixOrderApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -16,7 +18,8 @@ namespace NetlogixOrderApi.Controllers
             db = _db;
         }
 
-        [HttpPost(Name = "/order")]
+        [HttpPost]
+        [Route("/order")]
         public async Task<IResult> PostOrder(OrderRequestDTO orderDTO)
         {
             var order = mapper.Map<OrderRequest>(orderDTO);
@@ -25,13 +28,15 @@ namespace NetlogixOrderApi.Controllers
             return Results.Created($"/order/{orderDTO.OrderId}", orderDTO);
         }
 
-        [HttpGet(Name = "/order/{id}")]
+        [HttpGet]
+        [Route("/order/{id}")]
         public async Task<OrderRequest?> GetOrder(int id)
         {
             return await db.Orders.FindAsync(id);
         }
 
-        [HttpGet(Name = "/testing")]
+        [HttpGet]
+        [Route("/orders")]
         public async Task<List<OrderRequestDTO>> GetAllOrders()
         {
             var orders = await db.Orders
