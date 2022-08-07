@@ -3,11 +3,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NetlogixOrderApi.DTO;
 using NetlogixOrderApi.Model;
+using Newtonsoft.Json;
+using System.Text;
+using NetlogixOrderApi.Validation;
 
 namespace NetlogixOrderApi.Controllers
 {
-    // todo enable auth
-    // [ApiKeyAuthAttribute]
+    public class JSONValidation
+    {
+        public bool isValid { get; set; }
+        public IList<string> validationErrors { get; set; }
+    }
+    [ApiKeyAuthAttribute]
     [ApiController]
     [Route("[controller]")]
     public class RequestOrderController : ControllerBase
@@ -22,13 +29,26 @@ namespace NetlogixOrderApi.Controllers
 
         [HttpPost]
         [Route("/order")]
-        public async Task<IResult> PostOrder(OrderRequestDTO orderDTO)
+        public async Task<IResult> PostOrder()
         {
-            var order = mapper.Map<OrderRequest>(orderDTO);
-            await db.Orders.AddAsync(order);
-            await db.SaveChangesAsync();
-            return Results.Created($"/order/{orderDTO.OrderId}", orderDTO);
+            using (StreamReader reader = new StreamReader(Request.Body, Encoding.UTF8))
+            {
+                var orderJsonStr = await reader.ReadToEndAsync();
+
+                var jsonValidation = ControllerValidation.ValidateOrderRequestDTO(orderJsonStr);
+                if (!jsonValidation.isValid)
+                {
+                    return Results.BadRequest(jsonValidation.validationErrors);
+                }
+
+                var orderDTO = JsonConvert.DeserializeObject<OrderRequestDTO>(orderJsonStr);
+                var order = mapper.Map<OrderRequest>(orderDTO);
+                await db.Orders.AddAsync(order);
+                await db.SaveChangesAsync();
+                return Results.Created($"/order/{order.OrderId}", orderDTO);
+            }
         }
+
 
         [HttpGet]
         [Route("/order/{id}")]
@@ -55,4 +75,5 @@ namespace NetlogixOrderApi.Controllers
             return ordersDTO;
         }
     }
+
 }
