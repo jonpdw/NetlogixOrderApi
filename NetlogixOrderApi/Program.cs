@@ -1,13 +1,30 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 // using NetlogixOrderApi.AutoMapperProfile;
 
 var builder = WebApplication.CreateBuilder();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 // builder.Services.AddSwaggerGen(s => s.SwaggerDoc("v1", new OpenApiInfo { Title = "Netlogix Technical Assessment ", }));
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    // options.CustomSchemaIds(type => type.Name.EndsWith("DTO") ? type.Name.Replace("DTO", string.Empty) : type.Name);
+
+    // options.DocumentFilter<RemoveSchemasFilter>();
+    // above was enabled
+
+    // options.CustomSchemaIds(schemaIdStrategy);
+
+});
+
+// private static string schemaIdStrategy(Type currentClass)
+// {
+//     string returnedValue = currentClass.Name;
+//     if (returnedValue.EndsWith("DTO"))
+//         returnedValue = returnedValue.Replace("DTO", string.Empty);
+//     return returnedValue;
+// }
 // builder.Services.AddSwaggerGen(options =>
 // {
 //     options.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
@@ -34,23 +51,18 @@ app.MapControllers();
 
 app.Run();
 
-public class ApiKeyAuthAtribute : Attribute, IAsyncActionFilter
-{
-    public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
-    {
-        if (!context.HttpContext.Request.Headers.TryGetValue("ApiKey", out var potentialApiKey))
-        {
-            context.Result = new UnauthorizedResult();
-            return;
-        }
 
-        if (!("SecretKey".Equals(potentialApiKey)))
-        {
-            context.Result = new UnauthorizedResult();
-            return;
-        }
-
-        await next();
-    }
-}
-
+// public class RemoveSchemasFilter : IDocumentFilter
+// {
+//     public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
+//     {
+//         IDictionary<string, OpenApiSchema> allSchemas = swaggerDoc.Components.Schemas;
+//         foreach (KeyValuePair<string, OpenApiSchema> _item in allSchemas)
+//         {
+//             if (!(_item.Key.Contains("DTO")))
+//             {
+//                 swaggerDoc.Components.Schemas.Remove(_item.Key);
+//             }
+//         }
+//     }
+// }

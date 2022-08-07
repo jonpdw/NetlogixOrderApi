@@ -1,10 +1,9 @@
 
 namespace NetlogixOrderApi.DTO
 {
-
     public class OrderRequestDTO
     {
-        public int OrderId { get; set; }
+        public string OrderId { get; set; }
         public string RequestedPickupTime { get; set; }
         public PickupAddressDTO PickupAddress { get; set; }
         public DeliveryAddressDTO DeliveryAddress { get; set; }
@@ -12,6 +11,4 @@ namespace NetlogixOrderApi.DTO
         public string PickupInstructions { get; set; }
         public string DeliveryInstructions { get; set; }
     }
-
-
 }

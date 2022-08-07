@@ -1,6 +1,6 @@
 using AutoMapper;
 using NetlogixOrderApi.DTO;
-using NetlogixOrderApi.Models;
+using NetlogixOrderApi.Model;
 
 namespace NetlogixOrderApi.AutoMapperProfile
 {

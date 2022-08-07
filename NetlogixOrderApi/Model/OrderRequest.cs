@@ -1,12 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace NetlogixOrderApi.Models
+namespace NetlogixOrderApi.Model
 {
     public class OrderRequest
     {
         [Key]
-        public int OrderId { get; set; }
+        public string OrderId { get; set; }
         public string RequestedPickupTime { get; set; }
         [ForeignKey("PickupAddressId")]
         public PickupAddress PickupAddress { get; set; }

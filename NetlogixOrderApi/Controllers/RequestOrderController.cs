@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NetlogixOrderApi.DTO;
-using NetlogixOrderApi.Models;
+using NetlogixOrderApi.Model;
 
-    namespace NetlogixOrderApi.Controllers
+namespace NetlogixOrderApi.Controllers
 {
+    // todo enable auth
+    // [ApiKeyAuthAttribute]
     [ApiController]
     [Route("[controller]")]
     public class RequestOrderController : ControllerBase
@@ -25,19 +27,25 @@ using NetlogixOrderApi.Models;
             var order = mapper.Map<OrderRequest>(orderDTO);
             await db.Orders.AddAsync(order);
             await db.SaveChangesAsync();
+            // return StatusCode(201);
             return Results.Created($"/order/{orderDTO.OrderId}", orderDTO);
         }
 
         [HttpGet]
         [Route("/order/{id}")]
-        public async Task<OrderRequest?> GetOrder(int id)
+        public async Task<OrderRequest?> GetOrder(string id)
         {
-            return await db.Orders.FindAsync(id);
+            var order = await db.Orders
+            .Include(x => x.DeliveryAddress)
+            .Include(x => x.Items)
+            .Include(x => x.PickupAddress)
+            .Where(x => x.OrderId == id).FirstOrDefaultAsync();
+            return order;
         }
 
         [HttpGet]
         [Route("/orders")]
-        public async Task<List<OrderRequestDTO>> GetAllOrders()
+        public async Task<List<OrderRequestDTO>> GetOrders()
         {
             var orders = await db.Orders
             .Include(x => x.DeliveryAddress)
