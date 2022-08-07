@@ -1,0 +1,221 @@
+{
+	"info": {
+		"_postman_id": "f7180939-9f26-4df4-a7dc-e6bfd6a26401",
+		"name": "Netlogix Order Api Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12318399"
+	},
+	"item": [
+		{
+			"name": "POST Order 1",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"OrderId\": \"CH-1001\",\r\n    \"RequestedPickupTime\": \"2022/02/03 07:00:00\",\r\n    \"PickupAddress\": {\r\n        \"Unit\": \"14\",\r\n        \"Street\": \"Happy Valley Road\",\r\n        \"Suburb\": \"Sunshine Place\",\r\n        \"City\": \"Springfield\",\r\n        \"Postcode\": \"1023\"\r\n    },\r\n    \"DeliveryAddress\": {\r\n        \"Unit\": \"66\",\r\n        \"Street\": \"Over the hill street\",\r\n        \"Suburb\": \"Mountaintop Place\",\r\n        \"City\": \"Shelbyville\",\r\n        \"Postcode\": \"2013\"\r\n    },\r\n    \"Items\": [\r\n        {\r\n            \"ItemCode\": \"AMZ-01\",\r\n            \"Quantity\": 20\r\n        },\r\n        {\r\n            \"ItemCode\": \"XYZ-02\",\r\n            \"Quantity\": 5\r\n        }\r\n    ],\r\n    \"PickupInstructions\": \"Ensure driver signs in before heading to the loading bay\",\r\n    \"DeliveryInstructions\": \"Items are fragile, take extra care when unloading\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7218/order",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7218",
+					"path": [
+						"order"
+					]
+				},
+				"description": "Sucessful post request"
+			},
+			"response": []
+		},
+		{
+			"name": "POST Order 2",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"OrderId\": \"CH-1002\",\r\n    \"RequestedPickupTime\": \"2022/02/03 07:00:00\",\r\n    \"PickupAddress\": {\r\n        \"Unit\": \"14\",\r\n        \"Street\": \"Happy Valley Road\",\r\n        \"Suburb\": \"Sunshine Place\",\r\n        \"City\": \"Springfield\",\r\n        \"Postcode\": \"1023\"\r\n    },\r\n    \"DeliveryAddress\": {\r\n        \"Unit\": \"66\",\r\n        \"Street\": \"Over the hill street\",\r\n        \"Suburb\": \"Mountaintop Place\",\r\n        \"City\": \"Shelbyville\",\r\n        \"Postcode\": \"2013\"\r\n    },\r\n    \"Items\": [\r\n        {\r\n            \"ItemCode\": \"AMZ-01\",\r\n            \"Quantity\": 20\r\n        },\r\n        {\r\n            \"ItemCode\": \"XYZ-02\",\r\n            \"Quantity\": 5\r\n        }\r\n    ],\r\n    \"PickupInstructions\": \"Ensure driver signs in before heading to the loading bay\",\r\n    \"DeliveryInstructions\": \"Items are fragile, take extra care when unloading\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7218/order",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7218",
+					"path": [
+						"order"
+					]
+				},
+				"description": "Sucessful post request"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Orders",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"OrderId\": \"CH-1002\",\r\n    \"RequestedPickupTime\": \"2022/02/03 07:00:00\",\r\n    \"PickupAddress\": {\r\n        \"Unit\": \"14\",\r\n        \"Street\": \"Happy Valley Road\",\r\n        \"Suburb\": \"Sunshine Place\",\r\n        \"City\": \"Springfield\",\r\n        \"Postcode\": \"1023\"\r\n    },\r\n    \"DeliveryAddress\": {\r\n        \"Unit\": \"66\",\r\n        \"Street\": \"Over the hill street\",\r\n        \"Suburb\": \"Mountaintop Place\",\r\n        \"City\": \"Shelbyville\",\r\n        \"Postcode\": \"2013\"\r\n    },\r\n    \"Items\": [\r\n        {\r\n            \"ItemCode\": \"AMZ-01\",\r\n            \"Quantity\": 20\r\n        },\r\n        {\r\n            \"ItemCode\": \"XYZ-02\",\r\n            \"Quantity\": 5\r\n        }\r\n    ],\r\n    \"PickupInstructions\": \"Ensure driver signs in before heading to the loading bay\",\r\n    \"DeliveryInstructions\": \"Items are fragile, take extra care when unloading\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7218/orders",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7218",
+					"path": [
+						"orders"
+					]
+				},
+				"description": "Sucessful post request"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Order 1",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"OrderId\": \"CH-1002\",\r\n    \"RequestedPickupTime\": \"2022/02/03 07:00:00\",\r\n    \"PickupAddress\": {\r\n        \"Unit\": \"14\",\r\n        \"Street\": \"Happy Valley Road\",\r\n        \"Suburb\": \"Sunshine Place\",\r\n        \"City\": \"Springfield\",\r\n        \"Postcode\": \"1023\"\r\n    },\r\n    \"DeliveryAddress\": {\r\n        \"Unit\": \"66\",\r\n        \"Street\": \"Over the hill street\",\r\n        \"Suburb\": \"Mountaintop Place\",\r\n        \"City\": \"Shelbyville\",\r\n        \"Postcode\": \"2013\"\r\n    },\r\n    \"Items\": [\r\n        {\r\n            \"ItemCode\": \"AMZ-01\",\r\n            \"Quantity\": 20\r\n        },\r\n        {\r\n            \"ItemCode\": \"XYZ-02\",\r\n            \"Quantity\": 5\r\n        }\r\n    ],\r\n    \"PickupInstructions\": \"Ensure driver signs in before heading to the loading bay\",\r\n    \"DeliveryInstructions\": \"Items are fragile, take extra care when unloading\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7218/order/CH-1001",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7218",
+					"path": [
+						"order",
+						"CH-1001"
+					]
+				},
+				"description": "Sucessful post request"
+			},
+			"response": []
+		}
+	]
+}
