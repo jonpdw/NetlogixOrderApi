@@ -18,8 +18,8 @@ namespace NetlogixOrderApi.Validation
             bool isValid = order.IsValid(schema, out errors);
             JsonValidationResponse jsonValidation = new JsonValidationResponse
             {
-                isValid = isValid,
-                validationErrors = errors.Select(x => x.Message).ToList()
+                IsValid = isValid,
+                ValidationErrors = errors.Select(x => x.Message).ToList()
             };
             return jsonValidation;
         }

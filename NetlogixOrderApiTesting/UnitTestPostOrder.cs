@@ -22,7 +22,7 @@ namespace NetlogixOrderApiTesting
                 'DeliveryInstructions': 'Items are fragile, take extra care when unloading'
             }";
             var jsonValidation = ControllerValidation.ValidateOrderRequestDTO(orderJsonStr);
-            Assert.IsTrue(jsonValidation.isValid);
+            Assert.IsTrue(jsonValidation.IsValid);
         }
 
         [TestMethod]
@@ -39,8 +39,8 @@ namespace NetlogixOrderApiTesting
                 'DeliveryInstructions': 'Items are fragile, take extra care when unloading'
             }";
             var jsonValidation = ControllerValidation.ValidateOrderRequestDTO(orderJsonStr);
-            Assert.IsFalse(jsonValidation.isValid);
-            Assert.AreEqual(jsonValidation.validationErrors.First(), "Required properties are missing from object: Quantity.");
+            Assert.IsFalse(jsonValidation.IsValid);
+            Assert.AreEqual(jsonValidation.ValidationErrors.First(), "Required properties are missing from object: Quantity.");
         }
 
         [TestMethod]
@@ -56,8 +56,8 @@ namespace NetlogixOrderApiTesting
                 'DeliveryInstructions': 'Items are fragile, take extra care when unloading'
             }";
             var jsonValidation = ControllerValidation.ValidateOrderRequestDTO(orderJsonStr);
-            Assert.IsFalse(jsonValidation.isValid);
-            Assert.AreEqual(jsonValidation.validationErrors.First(), "Required properties are missing from object: DeliveryAddress.");
+            Assert.IsFalse(jsonValidation.IsValid);
+            Assert.AreEqual(jsonValidation.ValidationErrors.First(), "Required properties are missing from object: DeliveryAddress.");
         }
 
         [TestMethod]
@@ -73,8 +73,8 @@ namespace NetlogixOrderApiTesting
                 'DeliveryInstructions': 'Items are fragile, take extra care when unloading'
             }";
             var jsonValidation = ControllerValidation.ValidateOrderRequestDTO(orderJsonStr);
-            Assert.IsFalse(jsonValidation.isValid);
-            Assert.AreEqual(jsonValidation.validationErrors.First(), "Required properties are missing from object: OrderId.");
+            Assert.IsFalse(jsonValidation.IsValid);
+            Assert.AreEqual(jsonValidation.ValidationErrors.First(), "Required properties are missing from object: OrderId.");
         }
 
         [TestMethod]
@@ -91,8 +91,8 @@ namespace NetlogixOrderApiTesting
                 'DeliveryInstructions': 'Items are fragile, take extra care when unloading'
             }";
             var jsonValidation = ControllerValidation.ValidateOrderRequestDTO(orderJsonStr);
-            Assert.IsFalse(jsonValidation.isValid);
-            Assert.AreEqual(jsonValidation.validationErrors.First(), "Required properties are missing from object: Postcode.");
+            Assert.IsFalse(jsonValidation.IsValid);
+            Assert.AreEqual(jsonValidation.ValidationErrors.First(), "Required properties are missing from object: Postcode.");
         }
     }
 }

@@ -31,9 +31,9 @@ namespace NetlogixOrderApi.Controllers
                 var orderJsonStr = await reader.ReadToEndAsync();
 
                 var jsonValidation = ControllerValidation.ValidateOrderRequestDTO(orderJsonStr);
-                if (!jsonValidation.isValid)
+                if (!jsonValidation.IsValid)
                 {
-                    return Results.BadRequest(jsonValidation.validationErrors);
+                    return Results.BadRequest(jsonValidation.ValidationErrors);
                 }
 
                 var orderDTO = JsonConvert.DeserializeObject<OrderRequestDTO>(orderJsonStr);
