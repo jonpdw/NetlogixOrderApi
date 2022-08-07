@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using NetlogixOrderApi.Model;
+using NetlogixOrderApi.Models;
 
 public class OrderDb : DbContext
 {

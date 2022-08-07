@@ -9,10 +9,9 @@ builder.Services.AddDbContext<OrderDb>(options => options.UseInMemoryDatabase("i
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 var app = builder.Build();
 
-app.UseDeveloperExceptionPage();
-
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseSwaggerUI();
     app.UseSwagger();
 }

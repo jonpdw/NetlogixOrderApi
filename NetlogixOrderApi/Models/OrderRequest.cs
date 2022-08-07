@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace NetlogixOrderApi.Model
+namespace NetlogixOrderApi.Models
 {
     public class OrderRequest
     {

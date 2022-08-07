@@ -1,4 +1,4 @@
-namespace NetlogixOrderApi.Model
+namespace NetlogixOrderApi.Models
 {
     public class Item
     {

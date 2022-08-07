@@ -2,18 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NetlogixOrderApi.DTO;
-using NetlogixOrderApi.Model;
+using NetlogixOrderApi.Models;
 using Newtonsoft.Json;
 using System.Text;
 using NetlogixOrderApi.Validation;
 
 namespace NetlogixOrderApi.Controllers
 {
-    public class JSONValidation
-    {
-        public bool isValid { get; set; }
-        public IList<string> validationErrors { get; set; }
-    }
     [ApiKeyAuthAttribute]
     [ApiController]
     [Route("[controller]")]

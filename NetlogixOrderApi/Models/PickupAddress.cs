@@ -1,8 +1,8 @@
-namespace NetlogixOrderApi.Model
+namespace NetlogixOrderApi.Models
 {
-    public class DeliveryAddress
+    public class PickupAddress
     {
-        public int DeliveryAddressId { get; set; }
+        public int PickupAddressId { get; set; }
         public string Unit { get; set; }
         public string Street { get; set; }
         public string Suburb { get; set; }
