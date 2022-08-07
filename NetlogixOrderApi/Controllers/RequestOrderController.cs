@@ -27,7 +27,6 @@ namespace NetlogixOrderApi.Controllers
             var order = mapper.Map<OrderRequest>(orderDTO);
             await db.Orders.AddAsync(order);
             await db.SaveChangesAsync();
-            // return StatusCode(201);
             return Results.Created($"/order/{orderDTO.OrderId}", orderDTO);
         }
 

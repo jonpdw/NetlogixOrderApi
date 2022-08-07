@@ -1,0 +1,3 @@
+* write readme.txt
+* check the other logic e.g. the post and the get by id
+* turn on the authentication 
